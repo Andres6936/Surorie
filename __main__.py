@@ -46,7 +46,11 @@ def edit(number):
         return template('Edit.html', old=currentItem, number=number)
 
 @route('/static/css/<filename>')
-def serverStatic(filename):
+def serverStaticCSS(filename):
     return static_file(filename, root='./static/css/')
+
+@route('/static/js/<filename>')
+def serverStaticJS(filename):
+    return static_file(filename, root='./static/js/')
 
 run(host='localhost', port=8080, debug=True, reloader=True)
