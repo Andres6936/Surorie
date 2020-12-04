@@ -1,5 +1,5 @@
 import sqlite3
-from bottle import route, run, template, request
+from bottle import route, run, template, request, static_file
 
 @route('/app')
 def app():
@@ -44,5 +44,9 @@ def edit(number):
         cursor.execute('SELECT TASK FROM TODO WHERE ID LIKE ?', (str(number)))
         currentItem = cursor.fetchone()
         return template('Edit.html', old=currentItem, number=number)
+
+@route('/static/css/<filename>')
+def serverStatic(filename):
+    return static_file(filename, root='./static/css/')
 
 run(host='localhost', port=8080, debug=True, reloader=True)
