@@ -10,6 +10,20 @@
 </head>
 <body class="bg-light">
 <main class="container mt-5 bg-white p-3 border shadow">
+
+    <nav class="navbar navbar-expand-md navbar-light bg-white mb-4 border-bottom">
+        <div class="container-fluid">
+            <span class="navbar-brand">Surorie</span>
+            <div class="collapse navbar-collapse">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="/app">Home</a>
+                    <a class="nav-link" href="#">Edit</a>
+                    <a class="nav-link active text-primary" href="#">Add</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <p>Add a new task to the ToDo list:</p>
     <form action="/new" method="GET">
         <input class="form-control" type="text" size="100" maxlength="100" name="task">
