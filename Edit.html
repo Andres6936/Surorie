@@ -14,13 +14,13 @@
     <!-- the template expects to receive a value for "number" as well a "old", the text of the selected To-Do item-->
     <p>Edit the task with ID = {{number}}</p>
     <form action="/edit/{{number}}" method="GET">
-      <input type="text" name="task" value="{{old[0]}}" size="100" maxlength="100">
-      <select name="status">
+      <input class="form-control" type="text" name="task" value="{{old[0]}}" size="100" maxlength="100">
+      <select class="mt-3 form-select" name="status">
         <option>open</option>
         <option>closed</option>
       </select>
       <br>
-      <input type="submit" name="save" value="save">
+        <button class="mt-3 btn btn-primary" type="submit" name="save" value="save">Save</button>
     </form>
 </main>
 <script src="static/js/bootstrap.bundle.min.js"></script>
