@@ -47,7 +47,26 @@ def edit(number):
 
 @route('/static/css/<filename>')
 def serverStaticCSS(filename):
-    return static_file(filename, root='./static/css/')
+    """
+    Why is important added the Cache-Control header?
+
+    The right caching strategy can help improve site performance through:
+
+    - Shorter load times
+    - Reduced bandwidth
+    - Reduced server costs
+    - Having predictable behavior across browsers
+
+    Currently about ~50% of resources on the web can’t be cached due to their configuration
+    Reference: https://webhint.io/docs/user-guide/hints/hint-http-cache/
+
+    Reference: https://stackoverflow.com/a/24748094
+    :param filename: Static filename, generally css files
+    :return: The static file, generally css files
+    """
+    response = static_file(filename, root='./static/css/')
+    response.set_header("Cache-Control", "public, max-age=604800")
+    return response
 
 @route('/static/js/<filename>')
 def serverStaticJS(filename):
