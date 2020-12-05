@@ -45,6 +45,14 @@ def edit(number):
         currentItem = cursor.fetchone()
         return template('Edit.html', old=currentItem, number=number)
 
+@route('/edit/static/css/<filename>')
+def serverStaticEditCSS(filename):
+    return serverStaticCSS(filename)
+
+@route('/edit/static/js/<filename>')
+def serverStaticEditJS(filename):
+    return serverStaticJS(filename)
+
 @route('/static/css/<filename>')
 def serverStaticCSS(filename):
     """
