@@ -65,6 +65,7 @@ def serverStaticCSS(filename):
     :return: The static file, generally css files
     """
     response = static_file(filename, root='./static/css/')
+    # For those wondering, 604800 is the number of seconds in a week. 604800 / 60 / 60 / 24 = 7
     response.set_header("Cache-Control", "public, max-age=604800")
     return response
 
