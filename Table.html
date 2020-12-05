@@ -9,9 +9,10 @@
     <title>New</title>
 </head>
 <body>
+<main class="container">
     <!-- template to generate a HTML table from a list of tuples (or list of lists, or tuple of tuples or ...)-->
     <p>The open items are as follows:</p>
-    <table border="1">
+    <table class="table table-hover">
         %for row in rows:
         <tr>
             %for col in row:
@@ -20,6 +21,7 @@
         </tr>
         %end
 </table>
+</main>
 <script src="static/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
