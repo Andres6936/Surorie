@@ -48,6 +48,13 @@
         <h6 class="h6 fw-bold border-bottom pb-3 my-3">Successful Operation</h6>
         <p class="text-muted">The item number {{number}} was successfully updated</p>
     </section>
+
+    <script>
+        // Redirect to user after of 3 seconds.
+        setTimeout(()=> {
+            window.location.href = '/';
+        }, 3000)
+    </script>
 %end
 </main>
 <script src="static/js/bootstrap.bundle.min.js"></script>
