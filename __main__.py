@@ -81,4 +81,12 @@ def serverStaticCSS(filename):
 def serverStaticJS(filename):
     return static_file(filename, root='./static/js/')
 
+@route('/static/img/png/<filename>')
+def serverStaticPNG(filename):
+    return static_file(filename, root='./static/img/png')
+
+@route('/static/img/svg/<filename>')
+def serverStaticSVG(filename):
+    return static_file(filename, root='./static/img/svg')
+
 run(host='localhost', port=8080, debug=True, reloader=True)
