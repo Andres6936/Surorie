@@ -1,16 +1,11 @@
 import sqlite3
-from bottle import route, run, template, request, static_file
+from page.table import app
 
-@route('/app')
-def app():
-    connection = sqlite3.connect('App.Todo.db')
-    cursor = connection.cursor()
-    cursor.execute('SELECT ID, TASK FROM TODO WHERE STATUS LIKE "1"')
-    result = cursor.fetchall()
-    cursor.close()
-    return template('Table.html', rows=result)
+from bottle import Bottle, template, request, static_file
 
-@route('/new', method='GET')
+main = Bottle()
+
+@main.route('/new', method='GET')
 def newItem():
     if request.GET.save:
         new = request.GET.task.strip()
@@ -24,7 +19,7 @@ def newItem():
     else:
         return template('New.html')
 
-@route('/edit/<number:int>', method='GET')
+@main.route('/edit/<number:int>', method='GET')
 def edit(number):
     if request.GET.save:
         editTask = request.GET.task.strip()
@@ -45,15 +40,15 @@ def edit(number):
         currentItem = cursor.fetchone()
         return template('Edit.html', old=currentItem, number=number)
 
-@route('/edit/static/css/<filename>')
+@main.route('/edit/static/css/<filename>')
 def serverStaticEditCSS(filename):
     return serverStaticCSS(filename)
 
-@route('/edit/static/js/<filename>')
+@main.route('/edit/static/js/<filename>')
 def serverStaticEditJS(filename):
     return serverStaticJS(filename)
 
-@route('/static/css/<filename>')
+@main.route('/static/css/<filename>')
 def serverStaticCSS(filename):
     """
     Why is important added the Cache-Control header?
@@ -77,16 +72,18 @@ def serverStaticCSS(filename):
     response.set_header("Cache-Control", "public, max-age=604800")
     return response
 
-@route('/static/js/<filename>')
+@main.route('/static/js/<filename>')
 def serverStaticJS(filename):
     return static_file(filename, root='./static/js/')
 
-@route('/static/img/png/<filename>')
+@main.route('/static/img/png/<filename>')
 def serverStaticPNG(filename):
     return static_file(filename, root='./static/img/png')
 
-@route('/static/img/svg/<filename>')
+@main.route('/static/img/svg/<filename>')
 def serverStaticSVG(filename):
     return static_file(filename, root='./static/img/svg')
 
-run(host='localhost', port=8080, debug=True, reloader=True)
+if __name__ == '__main__':
+    main.mount('/app', app)
+    main.run(host='localhost', port=8080, debug=True, reloader=True)
