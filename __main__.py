@@ -6,7 +6,7 @@ from bottle import Bottle, template, request, static_file
 
 main = Bottle()
 
-@main.route('/edit/<number:int>', method='GET')
+@main.route('/edit/<number>', method='GET')
 def edit(number):
     if request.GET.save:
         editTask = request.GET.task.strip()
@@ -19,12 +19,14 @@ def edit(number):
         cursor = connection.cursor()
         cursor.execute('UPDATE TODO SET TASK=?, STATUS=? WHERE ID LIKE ?', (editTask, status, number))
         connection.commit()
+        cursor.close()
         return f'<p>The item number {number} was successfully updated</p>'
     else:
         connection = sqlite3.connect('App.Todo.db')
         cursor = connection.cursor()
         cursor.execute('SELECT TASK FROM TODO WHERE ID LIKE ?', (str(number)))
         currentItem = cursor.fetchone()
+        cursor.close()
         return template('Edit.html', old=currentItem, number=number)
 
 @main.route('/edit/static/css/<filename>')
