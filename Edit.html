@@ -15,9 +15,16 @@
 <!-- The "modeEdit" indicate that part of template show to user -->
 <!-- If "modeEdit" is True, show the form for edit the element-->
 %if modeEdit:
+
+    <nav class="navbar navbar-expand-md navbar-light bg-white mb-4 mx-4">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="/">Surorie</a>
+        </div>
+    </nav>
+
     <!-- template for editing a task-->
     <!-- the template expects to receive a value for "number" as well a "old", the text of the selected To-Do item-->
-    <section class="px-4">
+    <section class="px-4 mx-4">
         <p>Edit the task with ID = {{number}}</p>
         <form action="/edit/{{number}}" method="GET">
           <input class="form-control" type="text" name="task" value="{{old[0]}}" size="100" maxlength="100">
@@ -30,10 +37,14 @@
         </form>
     </section>
 
+    <footer class="text-center pt-3">
+        <p class="text-muted small">Copyright: Joan &copy; 2020</p>
+    </footer>
+
 <!-- If "modeEdit" is False, show a message for indicate to user of
      successful of operation-->
 %else:
-    <section class="px-4">
+    <section class="px-4 mx-4">
         <h6 class="h6 fw-bold border-bottom pb-3 my-3">Successful Operation</h6>
         <p class="text-muted">The item number {{number}} was successfully updated</p>
     </section>
