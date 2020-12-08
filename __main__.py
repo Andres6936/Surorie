@@ -24,7 +24,7 @@ def edit(number):
     else:
         connection = sqlite3.connect('App.Todo.db')
         cursor = connection.cursor()
-        cursor.execute('SELECT TASK FROM TODO WHERE ID LIKE ?', (str(number)))
+        cursor.execute(f'SELECT TASK FROM TODO WHERE ID LIKE {number}')
         currentItem = cursor.fetchone()
         cursor.close()
         return template('Edit.html', old=currentItem, number=number)
