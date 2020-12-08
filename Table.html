@@ -25,7 +25,7 @@
         </div>
     </nav>
 
-    <section class="border p-2 overflow-auto h-25">
+    <section class="border p-2 overflow-auto" style="height: 500px">
         <!-- template to generate a HTML table from a list of tuples (or list of lists, or tuple of tuples or ...)-->
         <p>The open items are as follows:</p>
         <table class="table table-hover">
@@ -42,13 +42,15 @@
             %end
         </table>
 
-        <div class="btn-group" style="position: relative; top: -56px; left: 80%;">
-            <!-- Is important specific the background color in this elements, if not, the color
-              for default is transparent, and if the color is specific in the parent <btn-group>
-              the rounded border not will be rendered correctly. -->
-            <button class="btn border bg-white"><img src="static/img/svg/Edit.svg" alt="Edit"/></button>
-            <button class="btn border bg-white"><img src="static/img/svg/Copy.svg" alt="Copy"/></button>
-            <button class="btn border bg-white"><img src="static/img/svg/Delete.svg" alt="Delete"/></button>
+        <div style="position: relative; top: -60%; left: 80%;">
+            <div class="btn-group" style="position: fixed;">
+                <!-- Is important specific the background color in this elements, if not, the color
+                  for default is transparent, and if the color is specific in the parent <btn-group>
+                  the rounded border not will be rendered correctly. -->
+                <button class="btn border bg-white"><img src="static/img/svg/Edit.svg" alt="Edit"/></button>
+                <button class="btn border bg-white"><img src="static/img/svg/Copy.svg" alt="Copy"/></button>
+                <button class="btn border bg-white"><img src="static/img/svg/Delete.svg" alt="Delete"/></button>
+            </div>
         </div>
     </section>
 
