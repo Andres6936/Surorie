@@ -1,23 +1,10 @@
 import sqlite3
 from page.table import app
+from page.new import new
 
 from bottle import Bottle, template, request, static_file
 
 main = Bottle()
-
-@main.route('/new', method='GET')
-def newItem():
-    if request.GET.save:
-        new = request.GET.task.strip()
-        connection = sqlite3.connect('App.Todo.db')
-        cursor = connection.cursor()
-        cursor.execute("INSERT INTO TODO (TASK, STATUS) VALUES (?, ?)", (new, 1))
-        newID = cursor.lastrowid
-        connection.commit()
-        cursor.close()
-        return f'<p>The new task was inserted into the database, the ID is f{newID}</p>'
-    else:
-        return template('New.html')
 
 @main.route('/edit/<number:int>', method='GET')
 def edit(number):
@@ -86,4 +73,5 @@ def serverStaticSVG(filename):
 
 if __name__ == '__main__':
     main.merge(app)
+    main.merge(new)
     main.run(host='localhost', port=8080, debug=True, reloader=True)
