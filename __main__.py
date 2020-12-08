@@ -20,14 +20,14 @@ def edit(number):
         cursor.execute('UPDATE TODO SET TASK=?, STATUS=? WHERE ID LIKE ?', (editTask, status, number))
         connection.commit()
         cursor.close()
-        return f'<p>The item number {number} was successfully updated</p>'
+        return template('Edit.html', modeEdit=False, number=number)
     else:
         connection = sqlite3.connect('App.Todo.db')
         cursor = connection.cursor()
         cursor.execute(f'SELECT TASK FROM TODO WHERE ID LIKE {number}')
         currentItem = cursor.fetchone()
         cursor.close()
-        return template('Edit.html', old=currentItem, number=number)
+        return template('Edit.html', modeEdit=True, old=currentItem, number=number)
 
 @main.route('/edit/static/css/<filename>')
 def serverStaticEditCSS(filename):
