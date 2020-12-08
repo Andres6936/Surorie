@@ -85,5 +85,5 @@ def serverStaticSVG(filename):
     return static_file(filename, root='./static/img/svg')
 
 if __name__ == '__main__':
-    main.mount('/app', app)
+    main.merge(app)
     main.run(host='localhost', port=8080, debug=True, reloader=True)
