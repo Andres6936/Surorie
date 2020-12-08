@@ -25,17 +25,19 @@
         </div>
     </nav>
 
-    <!-- template to generate a HTML table from a list of tuples (or list of lists, or tuple of tuples or ...)-->
-    <p>The open items are as follows:</p>
-    <table class="table table-hover">
-        %for row in rows:
-        <tr>
-            %for col in row:
-            <td>{{col}}</td>
+    <section class="border py-2 overflow-auto h-25">
+        <!-- template to generate a HTML table from a list of tuples (or list of lists, or tuple of tuples or ...)-->
+        <p>The open items are as follows:</p>
+        <table class="table table-hover">
+            %for row in rows:
+            <tr>
+                %for col in row:
+                <td>{{col}}</td>
+                %end
+            </tr>
             %end
-        </tr>
-        %end
-    </table>
+        </table>
+    </section>
 
     <footer class="text-center pt-3">
         <p class="text-muted small">Copyright: Joan &copy; 2020</p>
